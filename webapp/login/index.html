@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+    <title>数学提高班</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/elements.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/signin.css" type="text/css" media="screen"/>
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
+    <script src="angular.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script>
+        var userAgent = navigator.userAgent.toLowerCase();
+        var is_chrome;
+        if(userAgent.indexOf('chrome')>-1){ // For Chrome on Windows, MacOS and Android devices.
+            is_chrome = true;
+        }else if(userAgent.indexOf('crios')>-1){ // For Chrome on iOS devices.
+            is_chrome = true;
+        }else{
+            is_chrome = false;
+        }
+        vendorName = window.navigator.vendor;
+        console.log("is_chrome=> "+is_chrome+" and vendorName=> "+vendorName);
+
+        if (is_chrome === true) {
+            // Allowed to render.
+        } else {
+            window.open("chrome.html", "_self");
+        }
+    </script>
+    <!-- For Mixpanel Test -->
+    <!--<script type="text/javascript">
+        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+                typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+            b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+        mixpanel.init("30c340455d48ef0a86f0de60dd01a4bb");
+    </script>-->
+
+    <!-- Mixpanel Release_1.0.2 -->
+    <script type="text/javascript">
+        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+                typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+            b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+        mixpanel.init("2565f95f1bb387b875e146a94d264c36");
+    </script>
+    <script src="js/mixpanel.js"></script>
+
+</head>
+
+<body style="background: url('landscape.jpg') no-repeat center center fixed;">
+
+<div ng-app ng-controller="login_controller" class="login-wrapper">
+    <div ng-cloak class="box" style="margin-top: 50px">
+        <div class="content-wrap">
+            <h3 style="text-align: center;margin-bottom: 20px;">
+                数学提高班
+            </h3>
+
+            <div ng-show="loggedin">
+                <div style="margin-top: 20px;margin-bottom: 20px">
+                    <h5>QQ群号:150841793
+                        <a target="_blank"
+                           href="http://shang.qq.com/wpa/qunwpa?idkey=d2404821a36a1d668ba0f9e2a23b5fff74c00da03b456f7c1d7dbea7a218b6a4"><img
+                                border="0"
+                                src="http://pub.idqqimg.com/wpa/images/group.png"
+                                alt="提高班-学生交流群"
+                                title="提高班-学生交流群">
+                        </a>
+                    </h5>
+                </div>
+                <div>
+                    <button class="ladda-button btn btn-success btn-lg btn-block" ng-click="dispatch()">
+                        开始学习
+                    </button>
+                </div>
+                <div style="margin-top: 20px">
+                    <button ng-click="signout()" class="ladda-button btn btn-link">
+                        我不是 {{user.username}} 重新登录
+                    </button>
+                </div>
+            </div>
+            <form class="form-inline" role="form">
+                <div ng-hide="loggedin">
+                    <input required type="text" class="form-control input" placeholder="用户名" ng-model="username">
+                    <input required type="password" class="form-control input" placeholder="密码" ng-model="password">
+                    <button type="submit" ng-click="login()" style="margin-top: 10px"
+                        class="btn btn-lg btn-success btn-block">登录</button>
+                </div>
+                <div ng-hide="loggedin" style="float: left;margin-top: 10px;">
+                    <a style="font-size:15px" ng-click="forgetPwd()" ng-hide="forget">忘记密码</a>
+                    <span style="font-size:15px" ng-show="forget">请联系客服<a href="mailto:kefu@ghxz.cn?subject=忘记密码&body=学生姓名&#58;%0D%0A学号&#58;%0D%0A班主任姓名&#58;%0D%0A个人联系方式&#58;%0D%0A">kefu@ghxz.cn</a></span>
+                </div>
+            </form>
+            <p style="margin-top: 20px;font-size: 16px">{{message}}</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    var login_controller = function ($scope, $http) {
+
+        var toast = function (msg, type) {
+            $scope.message = msg;
+        }
+
+        var resetform = function () {
+            delete $scope.username;
+            delete $scope.password;
+            delete $scope.message;
+        }
+
+        var checklogin = function () {
+            $http.get('/me')
+                    .success(function (data, status, headers, config) {
+                        $scope.status = "logged in";
+                        $scope.user = data;
+                        $scope.loggedin = true;
+                        console.log('logged in,%s', data);
+                        //Mixpanel
+                        initMixpanelWithSP($scope.user._id, $scope.user.username, $scope.user.name, $scope.user.usergroup);
+                        signIn($scope.user._id, $scope.user.username, $scope.user.name, $scope.user.usergroup);
+                    }).error(function (data, status, headers, config) {
+                        $scope.status = "login failed";
+                        delete $scope.user;
+                        $scope.loggedin = false;
+                        console.log('not logged in');
+                    });
+        }
+
+        $scope.login = function () {
+            $http.post('/login', {
+                username: $scope.username,
+                password: $scope.password
+            }).success(function (data, status, headers, config) {
+                        resetform();
+                        checklogin();
+                    }).error(function (data, status, headers, config) {
+                        checklogin();
+                        toast("用户名不存在或者密码错误");
+                    });
+        };
+        $scope.signout = function () {
+            $http.get('/signout')
+                    .success(function (data, status, headers, config) {
+                        UserRelated.logout();
+                        checklogin();
+                    })
+                    .error(function (data, status, headers, config) {
+                        location.reload();
+                    });
+        };
+        $scope.dispatch = function () {
+            window.location = "/dispatch";
+        }
+        $scope.forgetPwd = function () {
+            $scope.forget = true;
+        }
+
+        checklogin();
+    }
+
+</script>
+
+<script src="js/spin.min.js"></script>
+<script src="js/ladda.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+
+<div id="baidutongji">
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F010203819208ca8ab53be35241149911' type='text/javascript'%3E%3C/script%3E"));
+        $(document).ready(function () {
+            var baiduLogo = document.getElementById("baidutongji");
+            baiduLogo.style.display = "none";
+        })
+    </script>
+</div>
+<div   style="position:fixed;left: 0;bottom: 0">
+    <a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics" /></a>
+</div>
+<script>
+    $(document).ready(function(){
+        unregisterAllSP();
+    })
+</script>
+
+</body>
+</html>

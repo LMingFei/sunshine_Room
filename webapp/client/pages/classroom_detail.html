@@ -1,0 +1,110 @@
+<header>
+    <select ng-model="selected_room" ng-change="change()" ng-options="room.full_name for room in my_rooms" ng-change="update_data()">
+        <option value="">--请选择--</option>
+    </select>
+    <div class="header-left">
+        <a class="btn-style btn-4" ng-tap = 'show_create_room()' >创建房间</a>
+    </div>
+    <div class='header-right'>
+      <a class='btn-style btn-4' ng-tap='show_add_div("add_apps")' ng-show="admin_flag">
+        添加应用
+      </a>
+    </div>
+</header>
+
+
+<div class='wrapper'>
+  <h3 style="margin-left: 20px">
+    My App
+    <ul class='list-style-2' style=";margin-top: 20px">
+        <div class="app_back" ng-repeat='app in apps'>
+            <a ng-tap='show_detail_div(app,"app")'>
+                <h3>
+                    {{app.full_name}}
+                </h3>
+            </a>
+        </div>
+
+    </ul>
+
+
+  </h3>
+
+  <div style="position: fixed;height: 220px;width: 250px;top: 15%;left:35%;border-color: #b2bfc7;border-style: solid;padding: 20px">
+    <form id="new_room">
+        房间名：<input type="text" name="full_name" id = '_new_room_name'><br>
+        学校Id：<input type="text" name="school_id" id = '_new_school_id'><br>
+       学校名：<input type="text" name="school_name" id = '_new_school_name'><br>
+        <input type="button" value="创建" style="position: absolute;left: 40%" ng-tap="create_room()">
+    </form>
+  </div>
+  <div class="div_remove" style="position: absolute;left: 40%"  ng-show='detail_div_flag' ng-switch="btn_remove_flag">
+      <h3 style="position: relative; left:2%" >
+          {{user_selected.full_name}}
+          {{app_selected.full_name}}
+      </h3>
+      <button class="btn_close" style="right:0px;position:absolute;" ng-tap="hide_remove_div()">
+          X
+      </button>
+      <div ng-switch-when='false' >
+          <button ng-tap='remove_Member(user_selected.id)' >
+              从本班删除
+          </button>
+          <button ng-tap='set_admin(user_selected.id)' ng-show="admin_flag">
+              设为管理员
+          </button>
+      </div>
+
+      <div ng-switch-when='true'>
+          {{app_selected.full_name}}      {{app_selected.full_name}}
+          <button ng-tap='remove_App(app_selected.id)'>
+              从本班删除
+          </button>
+          <a class="btn-2" href="{{app_selected.url}}">
+              进入应用
+          </a>
+      </div>
+  </div>
+
+
+
+
+  <div class="div_add"  ng-show='member_add_flag'>
+      <ul id="all_users" >
+          <div ng-repeat="user in all_users">
+          <input type="checkbox" name="{{user.id}}" style="float: left;">
+          <li style="list-style-type: none;" >{{user.full_name}}</li>
+          </div>
+      </ul>
+      <ul id="all_apps">
+          <div ng-repeat="app in all_apps">
+            <input type="checkbox" name="{{app.id}}" style="float: left;">
+            <li style="list-style-type: none">{{app.full_name}}</li>
+          </div>
+      </ul>
+      <div style="background-color: #000000;width:100%;height:1px;margin-bottom: 5px"></div>
+      <div style="text-align: center" ng-switch='btn_put_flag'>
+          <button ng-tap='add_Apps()' ng-switch-when='true'>更改</button>
+          <button ng-tap='add_Members()' ng-switch-when='false'>更改</button>
+          <button  ng-tap="hide_add_div()">
+              取消
+          </button>
+      </div>
+  </div>
+</div>
+
+<footer>
+  <ul class='footer-nav' >
+    <h3>
+      同学们
+      <a class='btn-style btn-4' style="position: absolute;right:20px" ng-tap="show_add_div('add_members')" ng-show="admin_flag">
+        添加学生
+      </a>
+    </h3>
+  </ul>
+  <div   style="float: left;cursor:pointer;margin-right: 20px;" ng-repeat='member in members' id='member.id' ng-tap="show_detail_div(member,'user')">
+    <img src="../client/img/images.jpg" style="width:50px;height:50px">
+  </div>
+</footer>
+
+
